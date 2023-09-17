@@ -1,6 +1,8 @@
 import Todo from "../Todo/Todo";
-
-function TodoList({todos,setTodos}){
+import React, { useContext } from "react"; // Import React and useContext
+import TodoContext from "../../context/TodoContext";
+function TodoList(){
+    const {todos,setTodos}=useContext(TodoContext)
     function onDeleteTodo(id){
         const newtodoList=todos.filter(todo => todo.id !=id)
         setTodos(newtodoList)
@@ -10,6 +12,7 @@ function TodoList({todos,setTodos}){
             if(todo.id==id){
                 todo.text=newTodo;
             }
+            return todo
         })
         setTodos(newtodoList)
     

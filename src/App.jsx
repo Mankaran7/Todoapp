@@ -1,5 +1,5 @@
-import { useState } from 'react'
-
+import { useState,useContext } from 'react'
+import TodoContext from './context/TodoContext'
 import './App.css'
 import TodoList from './components/TodoList/TodoList'
 import AddTodo from './components/AddTodo/AddTodo'
@@ -9,17 +9,15 @@ function App() {
         {id:1,text:'todo 1', isFinished:true},
         {id:2,text:'todo 2',isFinished:false}
       ])
-      function addTodos(todoText){
-        let nextId=todos.length+1
-        setTodos([...todos,{id:nextId,isFinished:false,text:todoText}])
-      }
-
+      
   return (
     <>
-       <AddTodo  addTodos={addTodos}/>
+       <TodoContext.Provider value={{todos,setTodos}}>
+         <AddTodo  />
 
-       <TodoList todos={todos} setTodos={setTodos} />
-    </>
+         <TodoList />
+       </TodoContext.Provider>
+     </>
   )
 }
 
