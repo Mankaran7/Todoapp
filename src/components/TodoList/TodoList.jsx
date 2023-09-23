@@ -1,8 +1,9 @@
 import Todo from "../Todo/Todo";
-import React, { useContext } from "react"; // Import React and useContext
-import TodoContext from "../../context/TodoContext";
+
+import { useDispatch, useSelector } from "react-redux";
 function TodoList(){
-    const {todos,dispatch}=useContext(TodoContext)
+    const dispatch=useDispatch();
+    const todos=useSelector(state => state.todos)
     function onDeleteTodo(id){
        dispatch({type:'delete_todo',payload:{id}})
     }
